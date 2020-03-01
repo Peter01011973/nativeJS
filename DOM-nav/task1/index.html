@@ -1,0 +1,38 @@
+<html>
+<head>
+</head>
+<body>
+    <div>Пользователи:</div>
+    <ul>
+        <li>Джон</li>
+        <li>Пит</li>
+    </ul>
+    <script>
+        for (let i=0; i<document.documentElement.childNodes.length; i++) {console.log('childNodes',document.documentElement.childNodes[i])}
+        for (let child of document.body.children) console.log('children',child)
+        const divEl1 = document.querySelector('div');
+        const divEl2 = document.getElementsByTagName('div')[0];
+        const divEl3 = document.body.firstElementChild;
+        const divEl4 = document.documentElement.childNodes[1].childNodes[1];
+        const divEl5 = document.documentElement.children[1];
+        const ulEl1 = document.querySelector('ul');
+        const ulEl2 = document.getElementsByTagName('ul')[0];
+        const liEl1 = document.querySelectorAll('li')[1]
+        const liEl2 = document.getElementsByTagName('li')[1]
+        // alert(divEl1);
+        // alert(divEl2)
+        console.log('div: ', divEl1);
+        console.log('div: ', divEl2);
+        console.log('div: ', divEl3);
+        console.log('div: ', divEl4);
+        console.log('div: ', divEl5);
+        console.log('ul: ', ulEl1);
+        console.log('ul: ', ulEl2);
+        console.log('li: ', liEl1);
+        console.log('li: ', liEl2);
+        
+        
+    </script>
+</body>
+
+</html>

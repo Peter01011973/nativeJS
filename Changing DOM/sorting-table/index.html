@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .headerTable::before {
+
+            content: '  ';
+        }
+
+        .headerTable.sort::before {
+            color: green;
+            content: '▼ ';
+        }
+    </style>
+</head>
+
+<body>
+
+    <table id="table">
+        <tr>
+            <th class="headerTable" data-type='string'>Имя</th>
+            <th class="headerTable" data-type='string'>Фамилия</th>
+            <th class="headerTable" data-type='number'>Возраст</th>
+        </tr>
+        <tr>
+            <td>John</td>
+            <td>Smith</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>Pete</td>
+            <td>Brown</td>
+            <td>15</td>
+        </tr>
+        <tr>
+            <td>Ann</td>
+            <td>Lee</td>
+            <td>5</td>
+        </tr>
+    </table>
+
+    <script>
+        table.addEventListener('click', handler)
+        let selectedCol;
+
+        function handler(e) {
+            function tableSort(colNum, dataType) {
+
+                function compare(a, b, dataType) {
+                    let rez;
+                    switch (dataType) {
+                        case 'string': rez = a > b ? 1 : -1; break;
+                        case 'number': rez = a - b > 0 ? 1 : -1; break;
+                        default: rez = 0; break;
+                    }
+                    return rez
+                }
+                table.tBodies[0].append(...Array.from(table.rows).slice(1).sort((a, b) => compare(a.cells[colNum].innerHTML, b.cells[colNum].innerHTML, dataType)))
+            }
+            
+            switch (e.target.tagName) {
+                case 'TH':
+                    if (selectedCol) selectedCol.classList.toggle('sort');
+                    const th = e.target;
+                    selectedCol=th;
+                    th.classList.toggle('sort');                   
+                    tableSort(th.cellIndex, th.dataset.type)
+                    break;
+                default: console.log('nothing to do'); break;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

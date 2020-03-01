@@ -1,0 +1,20 @@
+<ul id="ul">
+    <li id="one">1</li>
+    <li id="four">4</li>
+  </ul>
+  <script>
+    //   one.insertAdjacentHTML('afterend', '<li id="two">2</li>');
+    //   two.insertAdjacentHTML('afterend', '<li id="three">3</li>');
+    // [{id: 'two', text: '2'}, {id: 'three', text: '3'}].forEach(item => console.log(item))
+    let fragment = new DocumentFragment();
+    [{id: 'two', text: '2'}, {id: 'three', text: '3'}].forEach((item) => {
+        let newLi = document.createElement('li')
+        newLi.id = item.id
+        newLi.innerHTML = item.text
+        console.log(newLi);
+        fragment.append(newLi)
+    })
+
+    one.append(fragment)
+
+  </script>

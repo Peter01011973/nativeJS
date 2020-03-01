@@ -1,0 +1,45 @@
+<div id="example">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus ad necessitatibus doloremque facere cum nisi
+    earum saepe praesentium possimus mollitia distinctio, ratione consectetur error laboriosam id blanditiis, dolor ex
+    velit.
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis corporis ullam nulla voluptate debitis laudantium quod similique optio perferendis deleniti molestias fugit quisquam at eos eveniet, qui accusantium cumque blanditiis.
+    <button id='top1' onclick="this.scrollIntoView(true)">Press to top</button>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis magnam adipisci, ipsa ut eaque autem eum
+    perspiciatis rerum ducimus velit sunt animi assumenda praesentium dolorem corporis delectus. Adipisci, mollitia hic!
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet atque ad fuga eos rem, maxime odio, possimus modi
+    perferendis eius illo ut. Quaerat ducimus illo asperiores, molestias ipsum molestiae eius.
+</div>
+<button id='button1'>Press to scroll</button>
+
+<style>
+    #example {
+        width: 300px;
+        height: 200px;
+        border: 25px solid #E8C48F;
+        padding: 20px;
+        overflow: auto;
+    }
+</style>
+<script>
+    console.log('allDocHeight: ',example.scrollHeight);
+    console.log('scrollTop: ',example.scrollTop);
+    console.log('offsetHeifht: ',example.offsetHeight);
+    console.log('Rezult: ',example.scrollHeight-example.scrollTop-example.clientHeight);
+    example.addEventListener('click', handler)
+    function handler() {
+        console.log('Rezult: ',example.scrollHeight-example.scrollTop-example.clientHeight); 
+    }    
+    console.log('BW -',getComputedStyle(example).borderWidth.replace('px',''));
+    
+    console.log('Width of scrolling',example.offsetWidth-example.clientWidth-Number(getComputedStyle(example).borderWidth.replace('px',''))*2) 
+    button1.addEventListener('click',handler1)
+    top1.addEventListener('click',handler2)
+    function handler1() {
+        console.log('click1');
+        example.scrollTop +=10
+    }
+    // function handler2() {
+    //     console.log('click2');       
+    //     example.scrollIntoView(true)
+    // }
+</script>

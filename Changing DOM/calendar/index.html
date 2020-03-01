@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        td,
+        th {
+            border: 1px solid black;
+            padding: 3px;
+            text-align: center;
+        }
+
+        th {
+            font-weight: bold;
+            background-color: #E6E6E6;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="calendar"></div>
+
+    <script>
+
+        function createCalendar(elem, year, month) {
+            const capture = `<table><caption>Calendar</caption><tr>`
+            const footer = '</table>'
+            const days = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
+            const calendatHeader = days.map(day => ('<th>' + day + '</th>')).join('')+'</tr>'
+            let firstDay = new Date(year, month-1).getDay()
+            let startFill = false;
+            let stopFill = false;
+            let endOfMonthData=new Date(year, month, 0).getDate();  
+            let monthStr = ''
+            let currentData=0;
+            while (true) {
+                monthStr += '<tr>'
+                for (let i=0; i<7; i++) {
+                    startFill = startFill || (firstDay === i);               
+                    if (startFill && !stopFill) {monthStr+='<td>'+String(++currentData)+'</td>'; } else {monthStr+='<td>'+'</td>'}
+                    stopFill = stopFill || (currentData === endOfMonthData)                        
+                }
+                monthStr +='</tr>'
+                if (stopFill) break;
+            }
+            calendar.innerHTML = capture+calendatHeader+monthStr+footer
+        }
+
+        createCalendar(calendar, 2020, 3);
+    </script>
+
+</body>
+
+</html>

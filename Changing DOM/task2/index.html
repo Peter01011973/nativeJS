@@ -1,0 +1,13 @@
+<h3>To do</h3>
+<ol id="root">
+
+</ol>
+<script>
+    while (true) {
+        let str = prompt('What will you do?')
+        if (!str) break;
+        let li = document.createElement('li');
+        li.textContent = str;
+        root.append(li)
+    }
+</script>

@@ -1,0 +1,49 @@
+<div>
+    <ol id="ol">
+        <li>0</li>
+        <li>1</li>
+        <li>2</li>
+    </ol>
+</div>
+<lu id='lu'></lu>
+<script>
+    ol.before('before')
+    ol.after('after')
+    let firstLi = document.createElement('li');
+    firstLi.innerHTML = '<strong>-1</strong>'
+    let lastLi = document.createElement('li');
+    lastLi.innerHTML = 'хуй';
+    lastLi.style.color = 'pink'
+    let lastLi1 = lastLi.cloneNode(true)
+    ol.prepend(lastLi1)
+    ol.append(firstLi)
+    ol.children[1].before(lastLi)
+    ol.before('<p>Привет</p>', document.createElement('hr'));
+    ol.insertAdjacentHTML('beforeend', '<p>Hello!</p>');
+    setTimeout(() => lastLi.remove(), 3000)
+    for (let elem of document.childNodes) {
+        console.log(elem);
+
+    }
+    let arrLi = []
+    let fragment = new DocumentFragment();
+    for (let i = 0; i < 7; i++) {
+        let li = document.createElement('li');
+        li.innerHTML = `<strong>item</strong> ${i}`;
+        li.style.color = i % 2 === 0 ? 'orange' : 'green';
+        fragment.append(li);
+        arrLi.push(li)
+    }
+    lu.append(fragment)
+    setTimeout(() => lu.append(arrLi[3], arrLi[0], arrLi[4]))
+    function clear(elem) {
+        // elem.innerHTML=''
+        elem.remove()
+    }
+
+    setTimeout(() => clear(lu), 5000)
+    // очищает список
+    for (let elem of document.childNodes) {
+        console.log(elem);
+    }   
+</script>

@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <style>
+    #field {
+      width: 200px;
+      border: 10px groove black;
+      background-color: #00FF00;
+      position: relative;
+    }
+
+    #ball {
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div id="field">
+    <img src="https://en.js.cx/clipart/ball.svg" width='40' height="40" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  </div>
+  <script>
+      console.log("centerX",field.clientWidth/2);
+      console.log("centerY",field.clientHeight/2);
+      console.log(ball.offsetHeight);
+      
+      ball.style.top = field.clientHeight/2-ball.offsetHeight/2+'px';
+      ball.style.left = field.clientWidth/2-ball.offsetWidth/2+'px';
+      field.append(ball)
+    //   field
+  </script>
+
+</body>
+
+</html>
