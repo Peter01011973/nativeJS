@@ -4,7 +4,6 @@
 <head>
     <style>
         .headerTable::before {
-
             content: '  ';
         }
 
@@ -56,22 +55,21 @@
                     }
                     return rez
                 }
-                table.tBodies[0].append(...Array.from(table.rows).slice(1).sort((a, b) => compare(a.cells[colNum].innerHTML, b.cells[colNum].innerHTML, dataType)))
-            }
-            
+                table.tBodies[0]
+                .append(...Array.from(table.rows)
+                .slice(1)
+                .sort((a, b) => compare(a.cells[colNum].innerHTML, b.cells[colNum].innerHTML, dataType)))
+            }           
             switch (e.target.tagName) {
                 case 'TH':
                     if (selectedCol) selectedCol.classList.toggle('sort');
-                    const th = e.target;
-                    selectedCol=th;
-                    th.classList.toggle('sort');                   
-                    tableSort(th.cellIndex, th.dataset.type)
+                    const selectedCol = e.target;
+                    selectedCol.classList.toggle('sort');                   
+                    tableSort(selectedCol.cellIndex, selectedCol.dataset.type)
                     break;
                 default: console.log('nothing to do'); break;
             }
         }
     </script>
-
 </body>
-
 </html>

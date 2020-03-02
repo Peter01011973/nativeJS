@@ -1,0 +1,14 @@
+<button data-toggle-id='subscribe-mail'>show/hire</button>
+<form id='subscribe-mail' hidden> 
+    your mail: <input type='email'>
+</form>
+<script>
+    document.addEventListener('click', handler)
+    function handler(event) {
+        let id = event.target.dataset.toggleId;
+        alert(id)
+        if (!id) return;
+        let elem = document.getElementById(id);
+        elem.hidden = !elem.hidden
+    }
+</script>

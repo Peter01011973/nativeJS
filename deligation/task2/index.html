@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <style>
+        .title {
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .title.close::before {
+            content: '▶ ';
+            font-size: 80%;
+            color: green;
+        }
+        .title::before {
+            content: '▼ ';
+            font-size: 80%;
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+    <ul class="tree" id="tree">
+        <li class="title">Животные
+            <ul>
+                <li class="title">Млекопитающие
+                    <ul>
+                        <li>Коровы</li>
+                        <li>Ослы</li>
+                        <li>Собаки</li>
+                        <li>Тигры</li>
+                    </ul>
+                </li>
+                <li class="title">Другие
+                    <ul>
+                        <li>Змеи</li>
+                        <li>Птицы</li>
+                        <li>Ящерицы</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li class="title">Рыбы
+            <ul>
+                <li class="title">Аквариумные
+                    <ul>
+                        <li>Гуппи</li>
+                        <li>Скалярии</li>
+                    </ul>
+                </li>
+                <li class="title">Морские
+                    <ul>
+                        <li>Морская форель</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        tree.addEventListener('click', handler)
+        function handler(e) {
+            if (!e.target.classList.contains('title')) return;
+            e.target.children[0].hidden = !e.target.children[0].hidden;
+            e.target.classList.toggle('close')
+        }
+    </script>
+</body>
+
+</html>

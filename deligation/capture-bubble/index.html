@@ -1,0 +1,98 @@
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <!-- <link rel="stylesheet" href="example.css"> -->
+  <style>
+      form {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: yellow;
+          width: 300px;
+          height: 300px;
+          position: relative;
+          /* width: 100%; */
+      }
+      h4 {
+          position: absolute;
+          top: 0;
+          left:0;
+      }
+      div {
+        display: flex;
+          justify-content: center;
+          align-items: center;         
+          background: red;
+          width: 150px;
+          height: 150px;
+          position: relative;
+      }
+      p {
+          background: green;
+          width: 50px;
+          height: 50px;
+      }
+  </style>
+</head>
+
+<body>
+  Клик покажет оба: и <code>event.target</code>, и <code>this</code> для сравнения:
+
+  <form id="form">
+    <h4>Form</h4>
+    <div>
+        <h4>DIV</h4>
+        <p>P</p>
+    </div>
+  </form>
+
+  <script>
+    // case 1
+      // form.onclick = (event) =>{alert('form'); event.target.style.backgroundColor='pink'}
+      // document.querySelector('div').addEventListener('click',()=>alert('div'))
+      // let elemP = document.querySelector('p');
+      // elemP.addEventListener('click',(event)=>{event.stopImmediatePropagation(); alert('p')})
+      // elemP.addEventListener('click',(event)=>alert('p onemore'))
+    // end case 1
+
+    // case 2
+    // let elems = document.querySelectorAll('*')
+    // for (let elem of elems) {
+    //     elem.addEventListener('click', (event) => alert(`Capture: ${elem.tagName} event.target: ${event.target} event.currentTarget: ${event.currentTarget}`), {capture: true});
+    //     elem.addEventListener('click', (event) => alert(`Bubbling: ${elem.tagName} event.target: ${event.target} event.currentTarget: ${event.currentTarget}`))
+    // }
+    // end case 2
+
+    // case 3
+    let selected=null;
+        form.addEventListener('click',handler)
+        function handler(event) {
+            if (selected) selected.style.backgroundColor = ''
+            selected=event.target
+            selected.style.backgroundColor = 'pink'
+            // let elem = document.elementFromPoint(event.clientX, event.clientY);
+            // let elems = document.elementsFromPoint(event.clientX, event.clientY);
+            // console.log('U click on =>', elem);  
+            // console.log('U click on =>', elems);     
+            const coords = selected.getBoundingClientRect();
+            console.log(coords);
+            
+            let newDiv = document.createElement('div');
+            newDiv.style.cssText = 'position: absolute; height: 20px; background: white; color: red;'
+            newDiv.style.left = '0px';
+            newDiv.style.top =  '0px';
+            newDiv.innerHTML = 'Ky-ky';     
+            selected.append(newDiv);
+            // setTimeout(()=>newDiv.remove(), 3000)
+            const nodes = document.querySelectorAll('*')
+            for (let node of nodes) {
+              console.log(node);
+            }
+        }
+    // end case 3
+  </script>
+</body>
+</html>
