@@ -21,9 +21,14 @@ th {
     background: #333; 
     color: white; 
     font-weight: bold; 
+    cursor: move;
 }
 td, th { 
     padding: 6px; 
     border: 1px solid #ccc; 
     text-align: center; 
 }
+
+.over {
+    border: 2px dashed red;
+  }
