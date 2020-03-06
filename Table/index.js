@@ -208,6 +208,8 @@ function handleDrop(e) {
         const table = document.querySelector('table');
         let elem1;
         let elem2;
+        console.log('Th: ',document.querySelector('th'));
+        
         for (let i = 1; i < table.rows.length; i++) {
             elem1 = table.rows[i].cells[selColumn1].innerHTML;
             elem2 = table.rows[i].cells[selColumn2].innerHTML;

@@ -1,0 +1,253 @@
+<script>
+    // let name = "John";
+
+    // function sayHi() {
+    //     alert("Hi, " + name);
+    // }
+
+    // name = "Pete";
+
+    // sayHi(); // что будет показано: "John" или "Pete"?
+
+    // function makeWorker() {
+    //     let name = "Pete";
+
+    //     return function () {
+    //         alert('Hello '+name);
+    //     };
+    // }
+
+    // let name = "John";
+
+    // // create a function
+    // let work = makeWorker();
+
+    // // call it
+    // work();
+    // function counter() {
+    //     let count = 0;
+    //     return function() {return count++}
+    // }
+
+    // let counter1 = counter()
+    // let counter2 = counter()
+
+    // console.log('1:',counter1());
+    // counter1();
+    // console.log('2:',counter2());
+    // console.log('1:',counter1());
+        // function sum(a) {
+        //     return function(b) {return a+b}
+        // }
+
+        // console.log(sum(5)(-1));
+    // let arr = [1, 2, 3, 4, 5, 6, 7];
+
+    // function inBetween(a, b) {
+    //     return function(x) {
+    //         return (x>=a && x<=b)
+    //     }
+    // }
+
+    // function inArray(arr) {
+    //     return function(x) {
+    //         return arr.includes(x)
+    //     }
+    // }    
+    // console.log(arr.filter(inBetween(3, 6)));
+    // console.log(arr.filter(inArray([1, 2, 10])));
+    // let users = [
+    //     { name: "John", age: 20, surname: "Johnson" },
+    //     { name: "Pete", age: 18, surname: "Peterson" },
+    //     { name: "Ann", age: 19, surname: "Hathaway" }
+    // ];
+    // function byField(fieldName) {
+    //     return function(a, b) {
+    //         return a[fieldName] > b[fieldName] ? 1 : -1
+    //     }
+    // }
+
+    // console.log(users.sort(byField('age')));
+
+    // function makeArmy() {
+    //     let shooters = [];
+
+    //     // let i = 0;
+    //     for (let i =0; i < 10; i++) {
+    //         let shooter = function () { // функция shooter
+    //             alert(i); // должна выводить порядковый номер
+    //         };
+    //         shooters.push(shooter);
+    //     }
+
+    //     return shooters;
+    // }
+
+    // let army = makeArmy();
+
+    // army[0](); // у 0-го стрелка будет номер 10
+    // army[5](); 
+    // function createCounter() {
+    //     let numberOfCalls = 0;
+    //     return function () {
+    //         return ++numberOfCalls;
+    //     }
+    // }
+    // let fn = createCounter();
+    // fn(); //1
+    // console.log(fn()); //2
+    // fn(); //3
+    // let fn1 = createCounter();
+    // fn1(); //1
+    // fn1(); //2
+    // console.log(fn1()); //3
+
+//     Function.prototype._bind = function(context) {
+//         let con = this;
+//         return function() {
+//             return con.apply(context, arguments)
+//         }
+//     }
+
+//     let Hi = {
+//         name: 'Peter',
+//         init: function() {
+//             console.log('Hello', this.name);           
+//         }
+//     }
+
+//     let newHi = Hi.init._bind(Hi);
+//     newHi();
+
+//     (function() {
+//   alert("Скобки вокруг функции");
+// })();
+
+// (function() {
+//   alert("Скобки вокруг всего");
+// }());
+
+// !function() {
+//   alert("Выражение начинается с побитового оператора NOT");
+// }();
+
+// +function() {
+//   alert("Выражение начинается с унарного плюса");
+// }();
+    
+    // function sumTo(n) {
+    //     let sum = 0;
+    //     for (let i=0; i<=n; ++i) {
+    //         sum +=i 
+    //     }
+    //     return sum
+    // }
+
+    // function sumTo(n) {
+    //     if (n===1) {return 1} else { return n + sumTo(n-1)}
+    // }
+    // console.log(sumTo(10000));
+
+ 
+    // function fuck(n) {
+    //     if (n===1) {return 1} else { return n * fuck(n-1)}
+    // }
+    // console.log(fuck(3));   
+    // function fib(n) {
+    //     if (n<=1) {return n} else { return fib(n-1) + fib(n-2)}
+    // }
+    // console.log(fib(7));   
+//     let list = {
+//   value: 1,
+//   next: {
+//     value: 2,
+//     next: {
+//       value: 3,
+//       next: {
+//         value: 4,
+//         next: null
+//       }
+//     }
+//   }
+// };
+    // function printList(list) {
+    //     let tmp = list;
+    //     while (tmp) {
+    //         console.log(tmp.value);
+    //         tmp = tmp.next        
+    //     }
+    // }
+//         function printList(list) {
+//             console.log('list.value', list.value);
+            
+//             if (!list.next) {return list.value} else {
+//                 return (list.value + printList(list.next))
+//             }
+//         }
+
+        // const user = {
+        //     name: 'Ivan',
+        //     age: 22,
+        //     arm: 'yes'
+        // }
+        // var aa='11'
+//     console.log(printList(list));
+//     console.log(Math.max(...[1,2,3,4,5,77]));
+//     let newO = new Object;
+//     Object.assign(newO, user);
+
+//    console.log(newO);
+    // function sumArgs(...args) {
+    //     let sum = 0;
+    //     for (let arg of args) {
+    //         sum += arg
+    //     }
+    //     Array.from(arguments).forEach(a => console.log(a))
+    //     return sum
+    // }
+
+    // console.log(sumArgs(1,2,2,5));
+    // console.log(Array.from('dffff'));
+    // console.log({...user, age: 77});
+    // console.log(window.aa);
+        // function zero(x) {if (x) {return Math.floor(eval('0'.concat(x)))} else return 0 }
+        // function one(x) {if (x) {return Math.floor(eval('1'.concat(x)))} else return 1 }
+        // function two(x) {if (x) {return Math.floor(eval('2'.concat(x)))} else return 2  }
+        // function three(x) {if (x) {return Math.floor(eval('3'.concat(x)))} else return 3 }
+        // function four(x) {if (x) {return Math.floor(eval('4'.concat(x)))} else return 4 }
+        // function five(x) {if (x) {return Math.floor(eval('5'.concat(x)))} else return 5 }
+        // function six(x) {if (x) {return Math.floor(eval('6'.concat(x)))} else return 6 }
+        // function seven(x) {if (x) {return Math.floor(eval('7'.concat(x)))} else return 7 }
+        // function eight(x) {if (x) {return Math.floor(eval('8'.concat(x)))} else return 8 }
+        // function nine(x) {if (x) {return Math.floor(eval('9'.concat(x)))} else return 9}
+
+        // function plus(a) { return '+'+ String(a)  }
+        // function minus(a) {return '-'+String(a)  }
+        // function times(a) { return '*'+String(a)}
+        // function dividedBy(a) {return '/'+String(a)}   
+
+        // function zero(func)   { return func ? func(0) : 0; };
+
+
+function one(func)    { return func ? func(1) : 1; };
+function two(func)    { return func ? func(2) : 2; };
+function three(func)  { return func ? func(3) : 3; };
+function four(func)   { return func ? func(4) : 4; };
+function five(func)   { return func ? func(5) : 5; };
+function six(func)    { return func ? func(6) : 6; };
+function seven(func)  { return func ? func(7) : 7; };
+function eight(func)  { return func ? func(8) : 8; };
+function nine(func)   { return func ? func(9) : 9; };
+
+function plus( b )      { return function( a ) { return a + b; }; };
+function minus( b )     { return function( a ) { return a - b; }; };
+function times( b )     { return function( a ) { return a * b; }; };
+function dividedBy( b ) { return function( a ) { return a / b; }; };
+
+
+        console.log(one(plus(two())));
+        console.log(five(minus(one())));
+        console.log(one(minus(five())));
+        console.log(nine(times(five())));
+        console.log(eight(dividedBy(four())));
+</script>

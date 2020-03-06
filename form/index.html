@@ -1,0 +1,49 @@
+<style>
+    .alarm {
+        color: red
+    }
+</style>
+
+<form>
+    <input type = text value="yes" id='form'/>
+    <select autofocus>
+        <option value="one">1</option>
+        <option value = 'two' selected>2</option>
+        <option value = 'three'>3</option>
+    </select>
+    <select id="genres" >
+        <option value="rock">Рок</option>
+        <option value="blues" selected>Блюз</option>
+      </select>
+</form>
+<script>
+    for (let element of form.form.elements) {
+        console.log('element', element);        
+    }
+    for (let option of form.form.elements[1].options) {
+        console.log('option', option);
+        
+    }
+    form.form.elements[1].options[2].selected = true;
+    form.form.elements[1].options[2].text = 'rr'
+    document.querySelector('form').addEventListener('change', (e)=>{console.log('RRR')})
+    // let newEl = document.createElement('option')
+    // newEl.value = "classic"
+    // newEl.text = 'Классика'
+    // newEl.selected = true
+    // genres.append(newEl);
+    console.log('Selected :', genres.options[genres.selectedIndex].value, genres.options[genres.selectedIndex].text);
+    
+    genres.insertAdjacentHTML('beforeend', '<option value="classic" selected>Классика</option>')
+
+    genres.focus()
+    document.querySelector('input').onblur = function(e) {
+        console.log(e.target);
+        e.target.classList.remove('alarm')
+        if (e.target.value !== 'tt') {
+            e.target.classList.add('alarm')
+            console.log('Not');
+            e.target.focus()
+        }   
+    }
+</script>

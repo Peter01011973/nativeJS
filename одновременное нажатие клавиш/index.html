@@ -8,6 +8,11 @@
 <div class = 'scroll' style="height: 200px; overflow-y: scroll; border: 2px solid red;">
     <div class = 'window' style="height: 300px; ">
         <h1>Прокрути меня</h1>
+        <form>
+            <input type="radio" name="age" value="10">
+            <input type="radio" name="age" value="20">
+          </form>
+          
     </div>
 </div>
 
@@ -35,7 +40,8 @@
         
     })
 
-
+    console.log(document.querySelector('form').elements);
+    
 </script>
 
 </body>

@@ -63,7 +63,7 @@
             switch (e.target.tagName) {
                 case 'TH':
                     if (selectedCol) selectedCol.classList.toggle('sort');
-                    const selectedCol = e.target;
+                    selectedCol = e.target;
                     selectedCol.classList.toggle('sort');                   
                     tableSort(selectedCol.cellIndex, selectedCol.dataset.type)
                     break;
