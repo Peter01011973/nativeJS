@@ -229,25 +229,211 @@
         // function zero(func)   { return func ? func(0) : 0; };
 
 
-function one(func)    { return func ? func(1) : 1; };
-function two(func)    { return func ? func(2) : 2; };
-function three(func)  { return func ? func(3) : 3; };
-function four(func)   { return func ? func(4) : 4; };
-function five(func)   { return func ? func(5) : 5; };
-function six(func)    { return func ? func(6) : 6; };
-function seven(func)  { return func ? func(7) : 7; };
-function eight(func)  { return func ? func(8) : 8; };
-function nine(func)   { return func ? func(9) : 9; };
+// function one(func)    { return func ? func(1) : 1; };
+// function two(func)    { return func ? func(2) : 2; };
+// function three(func)  { return func ? func(3) : 3; };
+// function four(func)   { return func ? func(4) : 4; };
+// function five(func)   { return func ? func(5) : 5; };
+// function six(func)    { return func ? func(6) : 6; };
+// function seven(func)  { return func ? func(7) : 7; };
+// function eight(func)  { return func ? func(8) : 8; };
+// function nine(func)   { return func ? func(9) : 9; };
 
-function plus( b )      { return function( a ) { return a + b; }; };
-function minus( b )     { return function( a ) { return a - b; }; };
-function times( b )     { return function( a ) { return a * b; }; };
-function dividedBy( b ) { return function( a ) { return a / b; }; };
+// function plus( b )      { return function( a ) { return a + b; }; };
+// function minus( b )     { return function( a ) { return a - b; }; };
+// function times( b )     { return function( a ) { return a * b; }; };
+// function dividedBy( b ) { return function( a ) { return a / b; }; };
 
 
-        console.log(one(plus(two())));
-        console.log(five(minus(one())));
-        console.log(one(minus(five())));
-        console.log(nine(times(five())));
-        console.log(eight(dividedBy(four())));
+//         console.log(one(plus(two())));
+//         console.log(five(minus(one())));
+//         console.log(one(minus(five())));
+//         console.log(nine(times(five())));
+//         console.log(eight(dividedBy(four())));
+// const person = {
+//     name: 'Ivan',
+//     sayHi: function(phone, email) {
+//         console.log(`Hello, ${this.name}. Let me guess, your phone is ${phone}, your email is ${email}`);    
+//     }
+// }
+
+// Function.prototype.likeBind = function(context, ...rest) {
+//     const func = this;
+//     return function(...args) {
+//         // const uniqId = Symbol('uniqId');
+//         // context[uniqId] = func;
+//         // context[uniqId](...rest, ...args);
+//         // delete context[uniqId];
+//         func(...rest, ...args)
+//         // return result
+//     }
+// }
+
+// const sayHello = person.sayHi.likeBind(person, '111-22-33');
+// console.log(sayHello);
+
+// sayHello('aaa@bbb.rr')
+
+const person = {
+    name: 'Peter'
+}
+
+function info(phone, email) {
+    console.log(`Hello ${this.name}, phone: ${phone}, email: ${email}`);   
+}
+
+// // native bind
+// info.bind(person)('111-22-33', 'aaa@bbb.ru');
+// info.bind(person, '111-22-33')('aaa@bbb.ru');
+// info.bind(person,'111-22-33','aaa@bbb.ru')();
+
+// //1. function bind() using native bind
+// function bind(func, context, ...rest) {
+//     return func.bind(context, ...rest)    
+// }
+
+// 2. function bind() without bind, apply, call ES6
+function bind(func, context, ...rest) {
+    function cb(...args) {
+        const uniqId = Date.now().toString();
+        context[uniqId] = func;
+        const result = context[uniqId](...rest, ...args);
+        delete context[uniqId];
+        return result;
+    }
+    return cb
+    
+} 
+
+// // 3. function bind() without bind, apply, call in ES5
+// function bind(func, context) {
+//     const rest = Array.from(arguments).slice(2);
+//     return function() {
+//         const args = Array.from(arguments);
+//         const uniqId = Symbol('uniqId');
+//         context[uniqId] = func;
+//         const result = context[uniqId](...[...rest, ...args]);
+//         delete context[uniqId];
+//         return result
+//     }
+// }
+
+// // 4. function bind() with apply ES6
+// function bind(func, context, ...rest) {
+//     return function(...args) {
+//         // func.apply(context, rest.concat(args))
+//         return func.apply(context, [...rest, ...args])
+//         // return func.call(context, ...[...rest, ...args])
+//     }
+// }
+console.log('HHh');
+
+bind(info, person, '111-22-33', 'aaa@bbb.ru')();
+bind(info, person, '111-22-33')('aaa@bbb.ru');
+bind(info, person)('111-22-33','aaa@bbb.ru');
+
+Function.prototype._bind = function(context, ...rest) {
+    const func = this;
+    return function(...args) {
+        const uniqId = Symbol('uniqId');
+        context[uniqId] = func;
+        const result = context[uniqId](...rest, ...args)
+        delete context[uniqId]
+        return result
+    }
+}
+
+info._bind(person, '111-22-33', 'aaa@bbb.ru')();
+info._bind(person, '111-22-33')('aaa@bbb.ru');
+info._bind(person)('111-22-33', 'aaa@bbb.ru');
+
+// // call
+// function call(func, context, ...rest) {
+//     const uniqId = Symbol('uniqId');
+//     context[uniqId] = func;
+//     const result = context[uniqId](...rest);
+//     delete context[uniqId];
+//     return result
+// }
+
+// call(info, person, '111-22-33', 'aaa@bbb.ru');
+
+// Function.prototype._call = function(context, ...rest) {
+//     const func = this;
+//     const uniqId = Symbol('uniqId');
+//     context[uniqId] = func;
+//     const result = context[uniqId](...rest);
+//     delete context[uniqId];
+//     return result
+// }
+
+// info.call(person, '111-22-33', 'aaa@bbb.ru')
+// var aa = 'tt';
+// console.log('globalThis', globalThis);
+// console.log('window', window);
+// console.log(window.aa, globalThis.aa);
+
+// let sayHi = function func(who) {
+//   if (who) {
+//     console.log(`Hello, ${who}`);
+//   } else {
+//     func("Guest"); // использует func, чтобы снова вызвать себя же
+//   }
+// };
+
+// sayHi(); // Hello, Guest
+
+// function makeCounter() {
+//     let count = 0;
+//     function counter() {
+//         return count++
+//     }
+//     counter.set = value => count = value;
+//     counter.decrease = () => count--;
+//     return counter
+// }
+
+// function makeCounter() {
+//     let count = 0;
+//     function counter() {    
+//         return count++
+//     }
+//     counter.set = value => count = value;
+//     counter.decrease = () => count--;
+//     return counter
+// }
+// const counter1 = makeCounter()
+// counter1.set(10)
+// console.log(counter1.decrease())
+// console.log(counter1.decrease())
+// console.log(counter1());
+// console.log(counter1());
+// console.log(counter1());
+// console.log(counter1());
+
+// console.log( sum(5)(-1)(2) ); // 6
+
+// function sum(a) {
+
+// let currentSum = a;
+
+// function f(b) {
+//   currentSum += b;
+//   return f;
+// }
+
+// f.toString = function() {
+//   return currentSum;
+// };
+
+// return f;
+// }
+
+// const counter2 = counter();
+// console.log(counter2);
+
+// counter2.set(33)
+// console.log(counter2());
+// console.log(counter2());
+
 </script>

@@ -1,0 +1,188 @@
+<script>
+    // const name= 'Ivan';
+    // const age = 33;
+    // const info = (name, age) => console.log(`Name: ${name}, age: ${age}`);
+    // const sto = setTimeout(info, 2000, name, age);
+    // clearTimeout(sto);
+    // let timerId = setTimeout(
+    //     function tick() {
+    //         console.log('tick');
+    //         timerId = setTimeout(tick, 2000);
+    //     }, 2000
+    // )
+    // clearTimeout(timerId);
+ 
+    // function printNumbers(from, to) {
+    //     let cur = from;
+    //     const si = setInterval(
+    //         () => {if (cur > to) {clearInterval(si)} else { console.log(cur); cur++}}
+    //     , 1000)
+    // }
+
+    // function printNumbers(from, to) {
+    //     let cur = from;
+    //     let timerId = setTimeout(
+    //         function tick() {
+    //             if (cur > to) {clearInterval(timerId)} else { console.log(cur); cur++}
+    //             timerId = setTimeout(tick, 1000);
+    //         }, 1000
+    //     )
+    // }
+
+    // printNumbers(1,4)
+
+    // function slow(x) {
+    //     return 2*x
+    //     // return new Promise(
+    //     //     function(resolve, reject) {
+    //     //         setTimeout(() => resolve(x*2), 2000)
+    //     //     }
+    //     // )
+    // }
+
+    // function cachingDecorator(func) {
+    //    let cache = new Map();
+    //    return function(x)  {
+    //         console.log(x, Array.from(cache));
+            
+    //        if (cache.has(x)) {console.log('From cache',cache.get(x)); return cache.get(x);}
+    //        let result = func(x);
+           
+    //        cache.set(x, result)
+    //        console.log(result);
+    //        return result
+    //    }
+    // }
+
+    // let ss = cachingDecorator(slow);
+    // ss(33);
+    // ss(33);
+    // ss(3);
+    // ss(21)
+
+    // const worker = {
+    //     objectMethod() {return 33},
+    //     slow(x, y) {
+    //         console.log(`Invoked with ${x} ${y}`);
+    //         return x +y + this.objectMethod()
+    //     }
+    // }
+    
+    // function cachingDecorator(func) {
+    //     let cache = new Map();
+    //     return function(...args) {
+    //         const x = hash(args);
+    //         if (cache.has(x)) {
+    //             console.log('Cache');
+    //             return cache.get(x);
+    //         }
+    //          console.log('New');
+             
+    //         let result = func(...args);
+    //         cache.set(x, result);
+    //         return result
+    //     }
+    // }
+
+    // const hash = (...args) => Array.from(args).join(',')
+
+    // // console.log(worker.slow(33));
+    // gg = cachingDecorator(worker.slow.bind(worker))
+    // console.log(gg(3, 3))
+    // console.log(gg(3, 2))
+    // console.log(gg(3, 1))
+    // console.log(gg(3, 3))
+
+// ******** ДЕКОРАТОРЫ №1 ***********************
+    // const work = (a, b) => console.log(a + b);
+
+    // function spy(func) {
+
+    //     function cb(...args) {
+    //         cb.calls.push(args)
+    //         return func(...args)
+    //     }
+    //     cb.calls = []
+    //     return cb
+    // }
+    
+
+    // const gg = spy(work)
+    // gg(1,2)
+    // gg(2,2)
+    // console.log(gg.calls);
+    
+// ******** ДЕКОРАТОРЫ №2 ***********************
+    // function f(...rest) {
+    //     console.log(...rest);
+    // }
+
+    // function delay(func, time) {
+    //     const savedThis = this;
+    //     return function(...args) {
+    //         setTimeout(
+    //             () => func.apply(null, args)
+    //         , time)       
+    //     }
+    // }
+
+
+    // // создаём обёртки
+    // let f1000 = delay(f, 1000);
+    // let f1500 = delay(f, 3000);
+
+    // f1000("test"); // показывает "test" после 1000 мс
+    // f1500("test", 'gg', 'jjj'); // показывает "test" после 1500 мс 
+
+    // // ******** ДЕКОРАТОРЫ №3 ***********************
+    // function work(...args) {
+    //     console.log(...args);
+    // }
+
+    // function debounce(func, ms) {
+    //     let isCooldown = false;
+    //     return function(...args) {
+    //         console.log(...args, isCooldown);
+            
+    //         if (isCooldown) return;
+    //         func.bind(this, ...args)
+    //         isCooldown = true;
+    //         setTimeout(() => isCooldown = false, ms)
+    //     }
+    // }
+
+    // let f = debounce(work, 1000);
+    // f(1); // выполняется немедленно
+    // f(2); // проигнорирован
+
+    // setTimeout( () => f(3), 100); // проигнорирован (прошло только 100 мс)
+    // setTimeout( () => f(4), 1100); // выполняется
+    // setTimeout( () => f(5), 1500); // проигнорирован (прошло только 400 мс от последнего вызова)
+    "use strict";
+    const age = 33;
+    let user = {
+        firstName: "Вася",
+        lastName: 'Пупкин',
+        sayHi() {
+            alert(`Привет, ${this.fullName}! Your age - ${age}`);
+        },
+        get fullName() {
+            return `${this.firstName} ${this.lastName}`
+        },
+        set fullName(value) {
+            [this.firstName, this.lastName] = value.split(' ')
+        }
+    };
+    console.log(user.fullName);
+    
+    user.fullName='Сеня Козявкин';
+    console.log(user);
+    
+
+    console.log(Object.getOwnPropertyDescriptor(user, 'firstName')  );
+    
+    setTimeout(user.sayHi, 1000); // Привет, undefined!
+    setTimeout(()=>user.sayHi(), 1500);
+    // setTimeout(user.sayHi.bind(user),2000);
+    // setTimeout(function() {user.sayHi()}, 2500);
+</script>
